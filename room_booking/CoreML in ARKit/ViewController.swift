@@ -15,7 +15,7 @@ import Vision
 enum PredefinedObjects: String {
     case sombrero = "sombrero"
     case maraca = "maraca"
-    case glasses = "glasses"
+    case glasses = "stethoscope"
     
 }
 
@@ -25,7 +25,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     var latestPrediction: String = "..."
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
-    
+    var bubbleNodeParent: SCNNode?
+
     var bigRoomEvents:[Event] = []
     var smallRoomEvents:[Event] = []
     var busRoomEvents:[Event] = []
@@ -46,7 +47,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+//        sceneView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene()
@@ -204,7 +205,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         switch predefinedObject {
         case .sombrero:
             let currentEvents = bigRoomEvents.filter {
-                $0.isBusy == false
+                $0.isBusy == true
             }
             if let currentEvent = currentEvents.first {
                 let text = "\(dateFormatter.string(from: currentEvent.startDate)) : \(dateFormatter.string(from: currentEvent.endDate)) - busy"
@@ -282,7 +283,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Centre Node - to Centre-Bottom point
         bubbleNode.pivot = SCNMatrix4MakeTranslation( (maxBound.x - minBound.x)/2, minBound.y, bubbleDepth/2)
         // Reduce default text size
-        bubbleNode.scale = SCNVector3Make(0.3, 0.3, 0.3)
+        bubbleNode.scale = SCNVector3Make(0.1, 0.1, 0.1)
         
         // CENTRE POINT NODE
         let sphere = SCNSphere(radius: 0.01)
@@ -290,14 +291,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let sphereNode = SCNNode(geometry: sphere)
         
         // BUBBLE PARENT NODE
-        let bubbleNodeParent = SCNNode()
-        bubbleNodeParent.addChildNode(bubbleNode)
-        bubbleNodeParent.addChildNode(sphereNode)
-        bubbleNodeParent.constraints = [billboardConstraint]
+        bubbleNodeParent = SCNNode()
+        bubbleNodeParent?.addChildNode(bubbleNode)
+        bubbleNodeParent?.addChildNode(sphereNode)
+        bubbleNodeParent?.constraints = [billboardConstraint]
         
-        return bubbleNodeParent
+        return bubbleNodeParent!
     }
     @IBAction func scanAgain(_ sender: Any) {
+        bubbleNodeParent?.enumerateChildNodes({ (node, _) in
+            node.removeFromParentNode()
+        })
+
         didRecognizePredefinedObject = false
         loopCoreMLUpdate()
     }
