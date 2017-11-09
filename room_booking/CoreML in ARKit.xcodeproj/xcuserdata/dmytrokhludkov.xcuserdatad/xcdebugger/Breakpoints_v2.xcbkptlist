@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreML in ARKit/ViewController.swift"
-            timestampString = "531956809.366103"
+            timestampString = "531961704.446768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
             endingLineNumber = "172"
-            landmarkName = "defineActionForObject(_:)"
+            landmarkName = "classificationCompleteHandler(request:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreML in ARKit/ViewController.swift"
-            timestampString = "531956809.366563"
+            timestampString = "531961704.447186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "defineActionForObject(_:)"
+            landmarkName = "classificationCompleteHandler(request:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreML in ARKit/ViewController.swift"
-            timestampString = "531956809.366887"
+            timestampString = "531961704.447475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "createNewBubbleParentNode(_:)"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "createNewBubbleParentNode(_:isBusy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

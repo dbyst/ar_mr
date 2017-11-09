@@ -15,6 +15,7 @@ import Vision
 enum PredefinedObjects: String {
     case sombrero = "sombrero"
     case maraca = "maraca"
+    case glasses = "glasses"
     
 }
 
@@ -194,22 +195,52 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let predefinedObject = PredefinedObjects(rawValue: objectName), !didRecognizePredefinedObject else {
             return
         }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
         
+        let date = Date()
         print("It's \(objectName)")
         switch predefinedObject {
         case .sombrero:
-           print("Opa Opa Opapa")
+            let currentEvents = bigRoomEvents.filter {
+                $0.isBusy == false
+            }
+            if let currentEvent = currentEvents.first {
+                let text = "\(dateFormatter.string(from: currentEvent.startDate)) : \(dateFormatter.string(from: currentEvent.endDate)) - busy"
+                drawBubbleWithText(text, isBusy: true)
+            } else {
+               drawBubbleWithText("Available Now", isBusy: false)
+            }
         case .maraca:
-            print("Yeahhh!")
+            let currentEvents = smallRoomEvents.filter {
+                $0.isBusy == false
+            }
+            if let currentEvent = currentEvents.first {
+                let text = "\(dateFormatter.string(from: currentEvent.startDate)) : \(dateFormatter.string(from: currentEvent.endDate)) - busy"
+                drawBubbleWithText(text, isBusy: true)
+            } else {
+                drawBubbleWithText("Available Now", isBusy: false)
+            }
+        case .glasses:
+            let currentEvents = busRoomEvents.filter {
+                $0.isBusy == false
+            }
+            if let currentEvent = currentEvents.first {
+                let text = "\(dateFormatter.string(from: currentEvent.startDate)) : \(dateFormatter.string(from: currentEvent.endDate)) - busy"
+                drawBubbleWithText(text, isBusy: true)
+            } else {
+                drawBubbleWithText("Available Now", isBusy: false)
+            }
         default:
             return
         }
+
         didRecognizePredefinedObject = true
-        drawBubbleWithText(objectName)
     }
     
     
-    func drawBubbleWithText(_ text: String) {
+    func drawBubbleWithText(_ text: String, isBusy: Bool) {
         let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
         
         let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(screenCentre, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
@@ -220,13 +251,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
             
             // Create 3D Text
-            let node : SCNNode = createNewBubbleParentNode(text)
+            let node : SCNNode = createNewBubbleParentNode(text, isBusy: isBusy)
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
         }
     }
     
-    func createNewBubbleParentNode(_ text : String) -> SCNNode {
+    func createNewBubbleParentNode(_ text : String, isBusy: Bool) -> SCNNode {
         // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
         
         // TEXT BILLBOARD CONSTRAINT
@@ -239,7 +270,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         font = font?.withTraits(traits: .traitBold)
         bubble.font = font
         bubble.alignmentMode = kCAAlignmentCenter
-        bubble.firstMaterial?.diffuse.contents = UIColor.blue
+        bubble.firstMaterial?.diffuse.contents = isBusy ? UIColor.red : UIColor.green
         bubble.firstMaterial?.specular.contents = UIColor.white
         bubble.firstMaterial?.isDoubleSided = true
         // bubble.flatness // setting this too low can cause crashes.
@@ -251,11 +282,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Centre Node - to Centre-Bottom point
         bubbleNode.pivot = SCNMatrix4MakeTranslation( (maxBound.x - minBound.x)/2, minBound.y, bubbleDepth/2)
         // Reduce default text size
-        bubbleNode.scale = SCNVector3Make(0.5, 0.5, 0.5)
+        bubbleNode.scale = SCNVector3Make(0.3, 0.3, 0.3)
         
         // CENTRE POINT NODE
         let sphere = SCNSphere(radius: 0.01)
-        sphere.firstMaterial?.diffuse.contents = UIColor.cyan
+        sphere.firstMaterial?.diffuse.contents = UIColor.white
         let sphereNode = SCNNode(geometry: sphere)
         
         // BUBBLE PARENT NODE
