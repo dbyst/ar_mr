@@ -25,6 +25,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var latestPrediction: String = "..."
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
     
+    var bigRoomEvents:[Event] = []
+    var smallRoomEvents:[Event] = []
+    var busRoomEvents:[Event] = []
     // COREML
     var visionRequests = [VNRequest]()
     let dispatchQueueML = DispatchQueue(label: "com.hw.dispatchqueueml") // A Serial Queue
@@ -52,7 +55,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Enable Default Lighting - makes the 3D text a bit poppier.
         sceneView.autoenablesDefaultLighting = true
+        GoogleCalendarManager.shared.start(viewController: self)
         
+        
+        let today = Date()
+        let calendar: Calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day], from: today)
+        let startDate = calendar.date(from: components)!
+        
+        let endDate = Date(timeIntervalSince1970: startDate.timeIntervalSince1970 + 60*60*24)
+        
+        GoogleCalendarManager.shared.executeRequest(startDate: startDate, endDate: endDate, room: .big) { (evensts) in
+            self.bigRoomEvents = evensts.map({ Event(event: $0) })
+        }
+        
+        GoogleCalendarManager.shared.executeRequest(startDate: startDate, endDate: endDate, room: .small) { (evensts) in
+            self.smallRoomEvents = evensts.map({ Event(event: $0) })
+        }
+        
+        GoogleCalendarManager.shared.executeRequest(startDate: startDate, endDate: endDate, room: .bus) { (evensts) in
+            self.busRoomEvents = evensts.map({ Event(event: $0) })
+        }
         // Set up Vision Model
         guard let selectedModel = try? VNCoreMLModel(for: Inceptionv3().model) else { // (Optional) This can be replaced with other models on https://developer.apple.com/machine-learning/
             fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/ . Also ensure the model is part of a target (see: https://stackoverflow.com/questions/45884085/model-is-not-part-of-any-target-add-the-model-to-a-target-to-enable-generation ")
