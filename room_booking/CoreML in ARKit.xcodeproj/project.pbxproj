@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		96FF7EA91FB5034200A406E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96FF7EA81FB5034200A406E7 /* GoogleService-Info.plist */; };
-		9EE3138A1FB507D400EFA544 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EE313891FB507D400EFA544 /* GoogleService-Info.plist */; };
 		9EE3138C1FB5087500EFA544 /* GoogleCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE3138B1FB5087500EFA544 /* GoogleCalendarManager.swift */; };
 		9EE3138F1FB50AC100EFA544 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE3138E1FB50AC100EFA544 /* Event.swift */; };
+		9EE313931FB510B100EFA544 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EE313921FB510B100EFA544 /* GoogleService-Info.plist */; };
 		AEC748F51F18C24700334D87 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AEC748F41F18C24700334D87 /* Inceptionv3.mlmodel */; };
 		AEEC85651F18B8C600D43B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEC85641F18B8C600D43B9B /* AppDelegate.swift */; };
 		AEEC85671F18B8C600D43B9B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEC85661F18B8C600D43B9B /* art.scnassets */; };
@@ -25,9 +25,9 @@
 		61C132BFD5CF699E604E6496 /* Pods-CoreML in ARKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreML in ARKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreML in ARKit/Pods-CoreML in ARKit.release.xcconfig"; sourceTree = "<group>"; };
 		767CD8A9890CDF9B0FB80C09 /* Pods-CoreML in ARKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreML in ARKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreML in ARKit/Pods-CoreML in ARKit.debug.xcconfig"; sourceTree = "<group>"; };
 		96FF7EA81FB5034200A406E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9EE313891FB507D400EFA544 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleCalendar/GoogleCalendar/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9EE3138B1FB5087500EFA544 /* GoogleCalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCalendarManager.swift; sourceTree = "<group>"; };
 		9EE3138E1FB50AC100EFA544 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9EE313921FB510B100EFA544 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEC748F41F18C24700334D87 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		AEEC85611F18B8C600D43B9B /* CoreML in ARKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreML in ARKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEEC85641F18B8C600D43B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,9 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				9EE3138D1FB50AB300EFA544 /* Model */,
-				9EE313891FB507D400EFA544 /* GoogleService-Info.plist */,
 				9EE3138B1FB5087500EFA544 /* GoogleCalendarManager.swift */,
 				AEEC85641F18B8C600D43B9B /* AppDelegate.swift */,
+				9EE313921FB510B100EFA544 /* GoogleService-Info.plist */,
 				AEEC85661F18B8C600D43B9B /* art.scnassets */,
 				AEEC85681F18B8C600D43B9B /* ViewController.swift */,
 				AEEC856A1F18B8C600D43B9B /* Main.storyboard */,
@@ -180,7 +180,7 @@
 				96FF7EA91FB5034200A406E7 /* GoogleService-Info.plist in Resources */,
 				AEEC856E1F18B8C600D43B9B /* Assets.xcassets in Resources */,
 				AEEC856C1F18B8C600D43B9B /* Main.storyboard in Resources */,
-				9EE3138A1FB507D400EFA544 /* GoogleService-Info.plist in Resources */,
+				9EE313931FB510B100EFA544 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
