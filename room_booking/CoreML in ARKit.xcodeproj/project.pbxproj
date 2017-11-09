@@ -396,7 +396,7 @@
 			baseConfigurationReference = 767CD8A9890CDF9B0FB80C09 /* Pods-CoreML in ARKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 66LNN7V6D8;
+				DEVELOPMENT_TEAM = KY38SK8AD3;
 				INFOPLIST_FILE = "CoreML in ARKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hacatoniOS.GoogleCalendar;
@@ -411,7 +411,7 @@
 			baseConfigurationReference = 61C132BFD5CF699E604E6496 /* Pods-CoreML in ARKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 66LNN7V6D8;
+				DEVELOPMENT_TEAM = KY38SK8AD3;
 				INFOPLIST_FILE = "CoreML in ARKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hacatoniOS.GoogleCalendar;
