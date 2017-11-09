@@ -20,9 +20,10 @@ class GoogleCalendarManager:NSObject,GIDSignInUIDelegate,GIDSignInDelegate {
         case small = "remit.se_3231363835353731363839@resource.calendar.google.com"
     }
     var googleCalendar:GTLRCalendarService = GTLRCalendarService()
-    
-    func start(viewController:UIViewController) {
+    var signCallback:(()->())?
+    func start(viewController:UIViewController,finishLoginCallback:@escaping (()->())) {
         vc = viewController
+        signCallback = finishLoginCallback
         GIDSignIn.sharedInstance().signIn()
     }
     fileprivate var vc:UIViewController?
@@ -65,6 +66,7 @@ class GoogleCalendarManager:NSObject,GIDSignInUIDelegate,GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if user != nil {
             googleCalendar.authorizer = user.authentication.fetcherAuthorizer()
+            signCallback?()
         }
     }
     
